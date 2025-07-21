@@ -4,7 +4,23 @@ from tkinter import messagebox
 import os
 
 import openpyxl
-import openpyxl as ox
+
+def clear_form():
+    firstname_entry.delete(0,tk.END)
+    lastname_entry.delete(0,tk.END)
+    title_combobox.set('')
+    age_spinbox.delete(0,tk.END)
+    age_spinbox.insert(0,'18')
+    nationality_cobobox.set('')
+
+    reg_status_var.set('Not registered')
+    numcousres_spinbox.delete(0,tk.END)
+    numcousres_spinbox.insert(0,'0')
+    numsemester_spinbox.delete(0,tk.END)
+    numsemester_spinbox.insert(0,'0')
+
+    accept_var.set("Not accepted")
+
 def enter_data():
     accept = accept_var.get()
     if accept == "Accepted":
@@ -38,6 +54,7 @@ def enter_data():
             sheet.append([firstname,lastname,title,age,nationality,
                           numcousres,numsemester,regestration_status])
             workbook.save(filepath)
+            clear_form()
 
         else:
             tk.messagebox.showwarning(title="Error", message="First name and last name required")
